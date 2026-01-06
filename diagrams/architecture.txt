@@ -1,0 +1,13 @@
+```text
+                Internet
+                    │
+            [ ISP Router ]
+                    │
+             [ pfSense FW ]
+              ├───────────┐
+              │           │
+     LAN (Trusted)     PENTEST (Hostile)
+     10.10.10.0/24     10.10.20.0/24
+          │                 │
+     Admin / Tools        Kali Linux
+```
