@@ -34,6 +34,4 @@ nmap -sn 10.10.10.0/24
 This activity represents an early attack phase aimed at discovering internal assets.
 While no compromise occurred, this behavior would be classified as suspicious and monitored closely.
 
-### Severity
-
-🟡 Low–Medium (Reconnaissance)
+### Severity - 🟡 Low–Medium (Reconnaissance)
