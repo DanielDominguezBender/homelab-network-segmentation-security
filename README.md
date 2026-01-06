@@ -28,3 +28,91 @@ The lab is structured around **three isolated network zones**, all routed throug
 
 All inter-zone traffic is explicitly filtered and logged.
 
+Internet
+│
+[ ISP Router ]
+│
+[ pfSense Firewall ]
+├── LAN (10.10.10.0/24)
+└── PENTEST (10.10.20.0/24)
+
+
+---
+
+## 🔐 Firewall & Segmentation Strategy
+
+The **PENTEST network is treated as compromised by design**.
+
+Core security rules:
+
+- ❌ PENTEST → LAN (blocked, logged)
+- ❌ PENTEST → pfSense management (blocked, logged)
+- ✅ PENTEST → Internet (allowed, logged)
+- ✅ LAN → pfSense management (allowed)
+- ❌ WAN → internal networks (default deny)
+
+ICMP access to pfSense was enabled **only for diagnostics**, and documented as non-production behavior.
+
+---
+
+## ☠️ Attack Simulation
+
+From the PENTEST zone (Kali Linux), the following attack phases were simulated:
+
+### Reconnaissance
+- ARP discovery
+- ICMP sweep (`nmap -sn`)
+
+➡️ Detected as lateral movement attempts.
+
+### Scanning
+- TCP SYN scans
+- Focused service enumeration
+
+➡️ Detected via repeated blocked connections.
+
+### Infrastructure Targeting
+- Fingerprinting attempts against pfSense
+
+➡️ Logged as high-risk events targeting critical infrastructure.
+
+---
+
+## 🧠 Detection & SOC Analysis
+
+Instead of focusing only on blocking traffic, the lab emphasizes **visibility and correlation**.
+
+Observed patterns:
+- Repeated connection attempts from a single internal host
+- Sequential attack phases (recon → scan → targeting)
+- Clear distinction between benign diagnostics and malicious behavior
+
+Even without a full SIEM, **manual correlation of firewall logs** allowed accurate identification of attack chains, mirroring real SOC workflows.
+
+---
+
+## 🔎 Key Learnings
+
+- Network segmentation is one of the most effective security controls
+- Logs without context are noise; **correlation creates insight**
+- Not all traffic should be blocked — some must be observed
+- ICMP is a diagnostic tool, not a security objective
+- A firewall is both a **control** and a **sensor**
+
+---
+
+## 🚀 Roadmap – Part II
+
+Planned extensions:
+
+- SIEM integration (Wazuh)
+- Advanced detection rules
+- Alerting and correlation
+- Infrastructure virtualization with Proxmox
+
+---
+
+## ⚠️ Disclaimer
+
+All attacks were performed in a **controlled lab environment**.  
+No external systems or networks were targeted.
