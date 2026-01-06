@@ -28,13 +28,19 @@ The lab is structured around **three isolated network zones**, all routed throug
 
 All inter-zone traffic is explicitly filtered and logged.
 
-Internet<br>
-│<br>
-[ ISP Router ]<br>
-│<br>
-[ pfSense Firewall ]<br>
-├── LAN (10.10.10.0/24)<br>
-└── PENTEST (10.10.20.0/24)<br>
+```text
+                 Internet
+                    │
+            [ ISP Router ]
+                    │
+             [ pfSense FW ]
+              ├───────────┐
+              │           │
+     LAN (Trusted)     PENTEST (Hostile)
+     10.10.10.0/24     10.10.20.0/24
+          │                 │
+     Admin / Tools        Kali Linux
+```
 
 
 ---
