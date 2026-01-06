@@ -1,4 +1,4 @@
-```text
+
                 Internet
                     │
             [ ISP Router ]
@@ -10,4 +10,3 @@
      10.10.10.0/24     10.10.20.0/24
           │                 │
      Admin / Tools        Kali Linux
-```
