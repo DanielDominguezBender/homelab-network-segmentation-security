@@ -28,13 +28,13 @@ The lab is structured around **three isolated network zones**, all routed throug
 
 All inter-zone traffic is explicitly filtered and logged.
 
-Internet
-│
-[ ISP Router ]
-│
-[ pfSense Firewall ]
-├── LAN (10.10.10.0/24)
-└── PENTEST (10.10.20.0/24)
+Internet<br>
+│<br>
+[ ISP Router ]<br>
+│<br>
+[ pfSense Firewall ]<br>
+├── LAN (10.10.10.0/24)<br>
+└── PENTEST (10.10.20.0/24)<br>
 
 
 ---
